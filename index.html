@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Portfolio de Kenzo Metgy — Cybersecurité & Réseaux"/>
+  <meta property="og:title" content="Kenzo Metgy | Portfolio"/>
+  <meta property="og:description" content="Portfolio de Kenzo Metgy — Étudiant passionné par la Cybersécurité et les Réseaux."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://shardinuss.github.io/Portfolio/"/>
+  <meta property="og:image" content="https://shardinuss.github.io/Portfolio/og-preview.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Kenzo Metgy | Portfolio"/>
+  <meta name="twitter:description" content="Portfolio de Kenzo Metgy — Cybersécurité & Réseaux."/>
+  <meta name="twitter:image" content="https://shardinuss.github.io/Portfolio/og-preview.png"/>
+  <title>Kenzo Metgy | Portfolio</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><rect width='40' height='40' rx='0' fill='%23050505' stroke='%234ade80' stroke-width='1.5'/><text x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='18' font-weight='700' fill='%234ade80'>KM</text></svg>"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  
+  <!-- Background Grid -->
+  <div class="bg-grid"></div>
+  
+  <!-- Custom Cursor -->
+  <div class="cursor-follow"></div>
+
+  <!-- Layout: Sidebar + Main -->
+  <div class="layout">
+    
+    <header class="sidebar">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg aria-hidden="true" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="2" fill="rgba(74,222,128,0.1)" stroke="rgba(74,222,128,0.3)" stroke-width="1"/>
+            <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle" font-family="'Space Grotesk', sans-serif" font-size="18" font-weight="700" fill="#4ade80">KM</text>
+          </svg>
+        </div>
+        <div>
+          <span class="brand-name">KENZO M.</span>
+          <span class="brand-role">TSTI2D SIN</span>
+        </div>
+      </div>
+      
+      <button type="button" class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+      </button>
+
+      <nav class="nav">
+        <a href="#home" class="nav-link active">
+          <i data-lucide="home" class="nav-ico" aria-hidden="true"></i>
+          <span>ACCUEIL</span>
+        </a>
+        <a href="#about" class="nav-link">
+          <i data-lucide="user" class="nav-ico" aria-hidden="true"></i>
+          <span>À PROPOS</span>
+        </a>
+        <a href="#skills" class="nav-link">
+          <i data-lucide="code" class="nav-ico" aria-hidden="true"></i>
+          <span>COMPÉTENCES</span>
+        </a>
+        <a href="#projects" class="nav-link">
+          <i data-lucide="folder" class="nav-ico" aria-hidden="true"></i>
+          <span>PROJETS</span>
+        </a>
+        <a href="#goals" class="nav-link">
+          <i data-lucide="target" class="nav-ico" aria-hidden="true"></i>
+          <span>PARCOURS</span>
+        </a>
+        <a href="#contact" class="nav-link">
+          <i data-lucide="mail" class="nav-ico" aria-hidden="true"></i>
+          <span>CONTACT</span>
+        </a>
+        <div class="nav-socials">
+          <a href="https://github.com/ShardinusS" target="_blank" rel="noopener" title="GitHub" class="social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            <span class="sr-only">GitHub</span>
+          </a>
+          <a href="#contact" title="Contact" class="social-link">
+            <i data-lucide="mail" aria-hidden="true"></i>
+            <span class="sr-only">Contact</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-socials">
+          <a href="https://github.com/ShardinusS" target="_blank" rel="noopener" title="GitHub" class="social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            <span class="sr-only">GitHub</span>
+          </a>
+          <a href="#contact" title="Contact" class="social-link">
+            <i data-lucide="mail" aria-hidden="true"></i>
+            <span class="sr-only">Contact</span>
+          </a>
+        </div>
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span>SYSTÈME EN LIGNE</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      
+      <!-- HERO -->
+      <section id="home" class="section section-hero">
+        <div class="hero-container">
+          <h1 class="hero-title">
+            <span class="reveal-text">KENZO</span>
+            <span class="reveal-text">METGY<span class="hero-accent">.</span></span>
+          </h1>
+          <div class="hero-divider"></div>
+          <div class="hero-details">
+            <p class="reveal-delay">PASSIONNÉ PAR LA <strong>CYBERSÉCURITÉ</strong></p>
+            <p class="reveal-delay">ET LES <strong>RÉSEAUX</strong>.</p>
+          </div>
+          <div class="hero-cta">
+            <a href="#projects" class="cta-btn">
+              <i data-lucide="folder" class="cta-ico" aria-hidden="true"></i>
+              VOIR MES PROJETS
+            </a>
+            <a href="#contact" class="cta-btn cta-ghost">
+              <i data-lucide="mail" class="cta-ico" aria-hidden="true"></i>
+              ME CONTACTER
+            </a>
+          </div>
+          <div class="scroll-indicator">
+            <span>DÉFILER</span>
+            <div class="scroll-line"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="section">
+        <div class="section-label" data-stagger="section-label">
+          <i data-lucide="user" class="label-ico" aria-hidden="true"></i>
+          A PROPOS
+        </div>
+        <div class="section-content">
+          <p class="big-text" data-stagger="big-text">
+            Étudiant en <span class="highlight">TSTI2D SIN</span>,
+            j'ai grandi avec un clavier entre les mains et l'envie de tout démonter pour comprendre.
+          </p>
+          <div class="text-columns">
+            <div class="text-col" data-stagger="text-col">
+              <div class="text-col-icon">
+                <i data-lucide="cpu" aria-hidden="true"></i>
+              </div>
+              <p>
+                Je ne me contente pas d'utiliser un outil, je veux savoir ce qu'il y a derrière, comment ça tourne, et surtout comment le casser avant que quelqu'un d'autre le fasse.
+              </p>
+            </div>
+            <div class="text-col" data-stagger="text-col">
+              <div class="text-col-icon">
+                <i data-lucide="lock" aria-hidden="true"></i>
+              </div>
+              <p>
+                Ce que j'aime, c'est creuser la <strong>sécurité</strong> dans n'importe quel domaine, en particulier le <strong>réseau</strong>. J'aimerais bien en faire mon métier.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills" class="section">
+        <div class="section-label" data-stagger="section-label">
+          <i data-lucide="code" class="label-ico" aria-hidden="true"></i>
+          COMPETENCES
+        </div>
+        <div class="section-content">
+          <div class="skills-grid">
+            
+            <div class="skill-card" data-stagger="skill-card">
+              <div class="skill-header">
+                <i data-lucide="terminal" class="skill-ico" aria-hidden="true"></i>
+                <h3 class="skill-title">LANGAGES</h3>
+              </div>
+              <ul class="skill-list">
+                <li><span class="skill-dot"></span>HTML / CSS</li>
+                <li><span class="skill-dot"></span>JavaScript</li>
+                <li><span class="skill-dot"></span>PHP / SQL</li>
+                <li><span class="skill-dot"></span>C / C++</li>
+                <li><span class="skill-dot"></span>Lua</li>
+              </ul>
+            </div>
+
+            <div class="skill-card" data-stagger="skill-card">
+              <div class="skill-header">
+                <i data-lucide="wifi" class="skill-ico" aria-hidden="true"></i>
+                <h3 class="skill-title">RÉSEAUX</h3>
+              </div>
+              <ul class="skill-list">
+                <li><span class="skill-dot"></span>Cisco Packet Tracer</li>
+                <li><span class="skill-dot"></span>Filius</li>
+                <li><span class="skill-dot"></span>Adressage IP / CIDR</li>
+                <li><span class="skill-dot"></span>Analyse de paquets</li>
+              </ul>
+            </div>
+
+            <div class="skill-card" data-stagger="skill-card">
+              <div class="skill-header">
+                <i data-lucide="hard-drive" class="skill-ico" aria-hidden="true"></i>
+                <h3 class="skill-title">SYSTÈMES & OS</h3>
+              </div>
+              <ul class="skill-list">
+                <li><span class="skill-dot"></span>Linux Debian</li>
+                <li><span class="skill-dot"></span>Kali Linux</li>
+                <li><span class="skill-dot"></span>Windows</li>
+              </ul>
+            </div>
+
+            <div class="skill-card" data-stagger="skill-card">
+              <div class="skill-header">
+                <i data-lucide="wrench" class="skill-ico" aria-hidden="true"></i>
+                <h3 class="skill-title">INGÉNIERIE</h3>
+              </div>
+              <ul class="skill-list">
+                <li><span class="skill-dot"></span>SolidWorks</li>
+                <li><span class="skill-dot"></span>Impression 3D</li>
+                <li><span class="skill-dot"></span>Découpe Laser</li>
+                <li><span class="skill-dot"></span>VS Code</li>
+                <li><span class="skill-dot"></span>Git / GitHub</li>
+              </ul>
+            </div>
+
+            <div class="skill-card" data-stagger="skill-card">
+              <div class="skill-header">
+                <i data-lucide="languages" class="skill-ico" aria-hidden="true"></i>
+                <h3 class="skill-title">LANGUES</h3>
+              </div>
+              <ul class="skill-list">
+                <li><span class="skill-dot"></span>Français — Natif</li>
+                <li><span class="skill-dot"></span>Anglais — B2</li>
+                <li><span class="skill-dot"></span>Espagnol — A2/B1</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="section">
+        <div class="section-label" data-stagger="section-label">
+          <i data-lucide="folder" class="label-ico" aria-hidden="true"></i>
+          PROJETS
+        </div>
+        <div class="section-content">
+          
+          <!-- Project 1 -->
+          <article class="project-card" data-stagger="project-card">
+            <div class="project-card-inner">
+              <div class="project-content">
+                <h3 class="project-name">E<span class="name-accent">-</span>BENCH</h3>
+                <p class="project-excerpt">Conception d'un banc connecté urbain. Intégration de charge USB-C, écran e-ink pour actualités et météo.</p>
+                <ul class="project-tech">
+                  <li><i data-lucide="cpu" class="tag-ico" aria-hidden="true"></i> ELECTRONIQUE</li>
+                  <li><i data-lucide="radio" class="tag-ico" aria-hidden="true"></i> IOT</li>
+                  <li><i data-lucide="code" class="tag-ico" aria-hidden="true"></i> C++</li>
+                </ul>
+                <ul class="project-tasks">
+                  <li><i data-lucide="check" class="task-ico" aria-hidden="true"></i> Choix des composants & calculs de puissance</li>
+                  <li><i data-lucide="check" class="task-ico" aria-hidden="true"></i> Gestion de l'affichage e-ink</li>
+                  <li><i data-lucide="check" class="task-ico" aria-hidden="true"></i> Modélisation 3D (SolidWorks)</li>
+                </ul>
+                <div class="project-footer">
+                  <span class="project-label">
+                    <i data-lucide="calendar" class="pf-ico" aria-hidden="true"></i>
+                    Projet FAR — Première & Terminale
+                  </span>
+                  <span class="project-label project-label-right">
+                    <i data-lucide="info" class="pf-ico" aria-hidden="true"></i>
+                    Projet scolaire — non publié
+                  </span>
+                </div>
+              </div>
+              <div class="project-thumb-zone">
+                <div class="project-thumb" data-lightbox role="button" tabindex="0" aria-label="Voir l'assemblage E-Bench en grand">
+                  <img src="Ebench2.png" alt="Assemblage final de la maquette E-Bench" class="project-thumb-img" loading="lazy" />
+                </div>
+                <span class="project-thumb-caption">Assemblage final de la maquette</span>
+              </div>
+            </div>
+          </article>
+
+          <div class="project-separator"></div>
+
+          <!-- Project 2 -->
+          <article class="project-card" data-stagger="project-card">
+            <div class="project-card-inner">
+              <div class="project-content">
+                <h3 class="project-name">SHARDCARDS</h3>
+                <p class="project-excerpt">Application de flashcards intelligente avec système de répétition espacée. Optimisée mobile et hors-ligne.</p>
+                <ul class="project-tech">
+                  <li><i data-lucide="globe" class="tag-ico" aria-hidden="true"></i> WEB APP</li>
+                  <li><i data-lucide="code" class="tag-ico" aria-hidden="true"></i> JAVASCRIPT</li>
+                  <li><i data-lucide="smartphone" class="tag-ico" aria-hidden="true"></i> PWA</li>
+                </ul>
+                <ul class="project-tasks">
+                  <li><i data-lucide="check" class="task-ico" aria-hidden="true"></i> Développement complet (HTML/CSS/JS)</li>
+                  <li><i data-lucide="check" class="task-ico" aria-hidden="true"></i> Algorithme de mémorisation</li>
+                  <li><i data-lucide="check" class="task-ico" aria-hidden="true"></i> Stockage local & PWA</li>
+                </ul>
+                <div class="project-footer">
+                  <a href="https://shardinuss.github.io/ShardCards/" target="_blank" rel="noopener" class="project-link">
+                    <i data-lucide="external-link" class="pf-ico" aria-hidden="true"></i>
+                    VOIR LE PROJET
+                  </a>
+                </div>
+              </div>
+              <div class="project-thumb-zone">
+                <div class="sc-logo-card">
+<img src="SC.png" alt="Logo ShardCards" class="sc-logo-img" loading="lazy" />
+                </div>
+                <span class="project-thumb-caption">Logo ShardCards</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- GOALS -->
+      <section id="goals" class="section">
+        <div class="section-label" data-stagger="section-label">
+          <i data-lucide="target" class="label-ico" aria-hidden="true"></i>
+          PARCOURS
+        </div>
+        <div class="section-content">
+          <div class="timeline">
+            <div class="timeline-item" data-stagger="timeline-item">
+              <div class="timeline-icon">
+                <i data-lucide="book" aria-hidden="true"></i>
+              </div>
+              <div class="timeline-content">
+                <span class="year">PASSÉ</span>
+                <h4>COLLÈGE</h4>
+                <p>Formation générale &amp; découverte des sciences</p>
+              </div>
+            </div>
+            <div class="timeline-item" data-stagger="timeline-item">
+              <div class="timeline-icon">
+                <i data-lucide="zap" aria-hidden="true"></i>
+              </div>
+              <div class="timeline-content">
+                <span class="year">EN COURS — 2024 / 2026</span>
+                <h4>BAC STI2D — SIN</h4>
+                <p>Systèmes d'Information et Numérique</p>
+              </div>
+            </div>
+            <div class="timeline-item" data-stagger="timeline-item">
+              <div class="timeline-icon">
+                <i data-lucide="book-open" aria-hidden="true"></i>
+              </div>
+              <div class="timeline-content">
+                <span class="year">PROCHAINE ÉTAPE</span>
+                <h4>LICENCE INFORMATIQUE</h4>
+                <p>Consolider les bases théoriques (L1 → L3)</p>
+              </div>
+            </div>
+            <div class="timeline-item" data-stagger="timeline-item">
+              <div class="timeline-icon">
+                <i data-lucide="check-circle" aria-hidden="true"></i>
+              </div>
+              <div class="timeline-content">
+                <span class="year">OBJECTIF</span>
+                <h4>MASTER SPÉCIALISÉ</h4>
+                <p>Expertise en Réseaux & Cybersécurité</p>
+              </div>
+            </div>
+            <div class="timeline-item" data-stagger="timeline-item">
+              <div class="timeline-icon">
+                <i data-lucide="shield" aria-hidden="true"></i>
+              </div>
+              <div class="timeline-content">
+                <span class="year">VISION</span>
+                <h4>CARRIÈRE</h4>
+                <p>Expert Sécurité / Ingénieur Réseau</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER / CONTACT -->
+      <footer id="contact" class="footer">
+        <div class="contact-wrapper">
+          <h2 class="footer-title">CONTACTEZ-MOI<span class="hero-accent">.</span></h2>
+          <p class="footer-subtitle">Disponible pour stage</p>
+
+          <div class="contact-grid">
+            <!-- Left: Contact Form -->
+            <div class="contact-card contact-card--form" data-stagger="contact-card">
+              <h3 class="contact-card-title">Envoyez-moi un message</h3>
+              <form class="contact-form" action="https://formspree.io/f/xzdajdyb" method="POST">
+                <label for="contact-name" class="sr-only">Votre Nom</label>
+                <input type="text" id="contact-name" name="name" class="form-input" placeholder="Votre Nom" required />
+                <label for="contact-email" class="sr-only">Votre Email</label>
+                <input type="email" id="contact-email" name="email" class="form-input" placeholder="Votre Email" required />
+                <label for="contact-message" class="sr-only">Votre Message</label>
+                <textarea id="contact-message" name="message" class="form-input form-textarea" placeholder="Votre Message" required></textarea>
+                <button type="submit" class="form-submit">
+                  <span>Envoyer</span>
+                  <i data-lucide="arrow-right" class="form-submit-ico" aria-hidden="true"></i>
+                </button>
+              </form>
+            </div>
+
+            <!-- Right: Direct Contact -->
+            <div class="contact-card contact-card--info" data-stagger="contact-card">
+              <h3 class="contact-card-title">Contact Direct</h3>
+              <div class="contact-items">
+                <div class="contact-item" data-stagger="contact-item">
+                  <div class="contact-item-info">
+                    <i data-lucide="mail" class="contact-item-ico" aria-hidden="true"></i>
+                    <div>
+                      <span class="contact-item-label">Email</span>
+                      <span class="contact-item-value">kenzo.metgy.pro@gmail.com</span>
+                    </div>
+                  </div>
+                  <button type="button" class="contact-item-btn copy-email-btn" data-email="kenzo.metgy.pro@gmail.com" aria-label="Copier l'adresse email">
+                    COPIER
+                    <span class="copy-tooltip" aria-live="polite"></span>
+                  </button>
+                </div>
+                <div class="contact-item" data-stagger="contact-item">
+                  <div class="contact-item-info">
+                    <svg class="contact-item-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                    <div>
+                      <span class="contact-item-label">GitHub</span>
+                      <span class="contact-item-value">ShardinusS</span>
+                    </div>
+                  </div>
+                  <a href="https://github.com/ShardinusS" target="_blank" rel="noopener" class="contact-item-btn">VISITER</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bar">
+            <span class="footer-bar-info">KENZO METGY</span>
+            <div class="footer-bar-line"></div>
+            <span class="footer-bar-status">
+              <span class="status-dot-sm" aria-hidden="true"></span>
+              &copy; <span id="year"></span> KENZO METGY / <span class="system-online">SYSTÈME EN LIGNE</span>
+            </span>
+          </div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/lucide@0.575.0"></script>
+  <script src="script.js"></script>
+</body>
+</html>
