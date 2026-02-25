@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CV - Kenzo Metgy</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><rect width='40' height='40' rx='0' fill='%23050505' stroke='%234ade80' stroke-width='1.5'/><text x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='18' font-weight='700' fill='%234ade80'>KM</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    /* ── Reset & A4 Page Setup ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    @page { size: A4; margin: 0; }
+
+    :root {
+      --bg:        #050505;
+      --text-main: #e0e0e0;
+      --text-dim:  #a0a0a0;
+      --accent:    #4ade80;
+      --border:    rgba(255,255,255,0.14);
+      --grid-line: rgba(255,255,255,0.03);
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body:    'Inter', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 10pt;
+      line-height: 1.6;
+      color: var(--text-main);
+      background: var(--bg);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 66mm 1fr;
+      background: var(--bg);
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      background: rgba(5,5,5,0.97);
+      border-right: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 10mm 5mm 8mm 5mm;
+      display: flex;
+      flex-direction: column;
+      gap: 4mm;
+    }
+
+    /* Sidebar brand */
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 2.5mm;
+      padding-bottom: 4mm;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1mm;
+    }
+    .sidebar-logo {
+      width: 8mm; height: 8mm; flex-shrink: 0;
+      background: rgba(74,222,128,0.1);
+      border: 1px solid rgba(74,222,128,0.3);
+      border-radius: 2mm;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 9pt;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .sidebar-name {
+      font-family: var(--font-display);
+      font-size: 10pt;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .sidebar-role {
+      font-family: var(--font-mono);
+      font-size: 6.5pt;
+      color: var(--text-dim);
+      display: block;
+      margin-top: 0.3mm;
+    }
+
+    /* Sidebar section labels - pill shape like portfolio */
+    .sidebar h2 {
+      font-family: var(--font-mono);
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(74,222,128,0.3);
+      padding: 0.8mm 2.5mm;
+      border-radius: 99px;
+      background: rgba(74,222,128,0.05);
+      margin-bottom: 2mm;
+    }
+
+    .sidebar ul { list-style: none; font-size: 8.5pt; }
+    .sidebar ul li {
+      padding: 0.6mm 0;
+      display: flex;
+      align-items: center;
+      gap: 2mm;
+      color: var(--text-dim);
+    }
+    .sidebar ul li::before {
+      content: "▸";
+      color: var(--accent);
+      font-size: 6pt;
+      flex-shrink: 0;
+      opacity: 0.6;
+    }
+
+    /* Global links */
+    a { color: inherit; text-decoration: none; }
+
+    /* Contact */
+    .contact-info { font-size: 8pt; line-height: 1.7; }
+    .contact-info a {
+      color: var(--text-dim);
+      transition: color 0.2s;
+    }
+    .contact-info a:hover { color: var(--accent); }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 2mm;
+      margin-bottom: 1.5mm;
+      color: var(--text-dim);
+    }
+    .contact-icon {
+      font-size: 8pt;
+      width: 4mm;
+      text-align: center;
+      color: var(--accent);
+    }
+
+    /* Langues */
+    .lang-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 8.5pt;
+      padding: 0.7mm 0;
+      color: var(--text-dim);
+    }
+    .lang-level {
+      font-family: var(--font-mono);
+      color: var(--accent);
+      font-size: 7.5pt;
+    }
+    .flag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 6pt;
+      font-weight: 700;
+      background: rgba(74,222,128,0.15);
+      color: var(--accent);
+      padding: 0.3mm 1.2mm;
+      border-radius: 2px;
+      margin-right: 1.5mm;
+      letter-spacing: 0.3px;
+      vertical-align: middle;
+    }
+
+    /* Status */
+    .sidebar-status {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 1.5mm;
+      font-family: var(--font-mono);
+      font-size: 6.5pt;
+      color: var(--accent);
+    }
+    .sidebar-status-dot {
+      width: 5px; height: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 6px rgba(74,222,128,0.5);
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+
+    /* ── Main Content ── */
+    .main {
+      padding: 10mm 7mm 8mm 7mm;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5mm;
+    }
+
+    /* Header */
+    .header {
+      padding-bottom: 3mm;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0.5mm;
+    }
+    .header h1 {
+      font-family: var(--font-display);
+      font-size: 23pt;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .header h1 .accent { color: var(--accent); }
+    .header .subtitle {
+      font-family: var(--font-mono);
+      font-size: 9pt;
+      color: var(--text-dim);
+      margin-top: 1.5mm;
+    }
+    .header .tagline {
+      font-family: var(--font-mono);
+      font-size: 7.5pt;
+      color: var(--accent);
+      margin-top: 2mm;
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(74,222,128,0.3);
+      padding: 0.5mm 2.5mm;
+      border-radius: 99px;
+      background: rgba(74,222,128,0.05);
+    }
+
+    /* Section labels - pill shape identique au portfolio */
+    .main h2 {
+      font-family: var(--font-mono);
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(74,222,128,0.3);
+      padding: 0.8mm 3mm;
+      border-radius: 99px;
+      background: rgba(74,222,128,0.05);
+      margin-bottom: 2.5mm;
+    }
+
+    /* Profil */
+    .profil-text {
+      font-size: 9pt;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    /* Formation - cartes bordées */
+    .formation-item {
+      padding: 2mm 2.5mm;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5mm;
+      transition: border-color 0.3s;
+    }
+    .formation-item .period {
+      font-family: var(--font-mono);
+      font-size: 7pt;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: block;
+    }
+    .formation-item h3 {
+      font-family: var(--font-display);
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-top: 0.4mm;
+    }
+    .formation-item p {
+      font-size: 8.5pt;
+      color: var(--text-dim);
+      margin-top: 0.3mm;
+    }
+
+
+    /* Centres d'intérêt */
+    .objectif-list { list-style: none; font-size: 8.5pt; color: var(--text-dim); }
+    .objectif-list li {
+      padding: 0.7mm 0;
+      display: flex;
+      gap: 2mm;
+    }
+    .objectif-list li::before {
+      content: "→";
+      font-family: var(--font-mono);
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+
+    @keyframes pulse {
+      0%   { opacity: 1; }
+      50%  { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+
+    /* Print */
+    @media print {
+      body { margin: 0; }
+      .page {
+        min-height: 297mm;
+        page-break-after: avoid;
+      }
+      .sidebar-status-dot { animation: none; }
+    }
+
+    @media screen {
+      body { background: #000; padding: 10mm 0; }
+      .page {
+        box-shadow:
+          0 0 0 1px rgba(255,255,255,0.05),
+          0 4px 40px rgba(74,222,128,0.05);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar">
+
+      <div class="sidebar-brand">
+        <div class="sidebar-logo">KM</div>
+        <div>
+          <span class="sidebar-name">KENZO M.</span>
+          <span class="sidebar-role">TSTI2D SIN</span>
+        </div>
+      </div>
+
+      <section>
+        <h2>Contact</h2>
+        <div class="contact-info">
+          <div class="contact-item">
+            <span class="contact-icon">☎</span>
+<span>06 32 80 69 51</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">⌖</span>
+<span>Amiens, France</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">✉</span>
+            <a href="mailto:kenzo.metgy.pro@gmail.com">kenzo.metgy.pro@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">⟨⟩</span>
+            <a href="https://github.com/ShardinusS">github.com/ShardinusS</a>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Divers</h2>
+        <ul>
+          <li>Permis B (en cours)</li>
+          <li>ASSR 2</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Langages</h2>
+        <ul>
+          <li>HTML / CSS</li>
+          <li>JavaScript</li>
+          <li>PHP / SQL</li>
+          <li>C / C++</li>
+          <li>Lua</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Réseaux</h2>
+        <ul>
+          <li>Cisco Packet Tracer</li>
+          <li>Filius</li>
+          <li>Adressage IP / CIDR</li>
+          <li>Analyse de paquets</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Systèmes & OS</h2>
+        <ul>
+          <li>Linux Debian</li>
+          <li>Kali Linux</li>
+          <li>Windows</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Ingénierie</h2>
+        <ul>
+          <li>SolidWorks</li>
+          <li>Impression 3D</li>
+          <li>Découpe Laser</li>
+          <li>VS Code</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Langues</h2>
+        <div class="lang-item">
+          <span><span class="flag">FR</span>Français</span>
+          <span class="lang-level">Natif</span>
+        </div>
+        <div class="lang-item">
+          <span><span class="flag">EN</span>Anglais</span>
+          <span class="lang-level">B2</span>
+        </div>
+        <div class="lang-item">
+          <span><span class="flag">ES</span>Espagnol</span>
+          <span class="lang-level">A2/B1</span>
+        </div>
+      </section>
+
+      <div class="sidebar-status">
+        <span class="sidebar-status-dot"></span>
+        SYSTÈME EN LIGNE
+      </div>
+
+    </aside>
+
+    <!-- ── MAIN CONTENT ── -->
+    <main class="main">
+
+      <header class="header">
+        <h1>KENZO METGY<span class="accent">.</span></h1>
+        <div class="subtitle">Cybersécurité &amp; Réseaux</div>
+      </header>
+
+      <!-- Profil -->
+      <section>
+        <h2>Profil</h2>
+        <p class="profil-text">
+          Étudiant en Terminale STI2D SIN, je me passionne pour la cybersécurité et les réseaux depuis plusieurs années. Je cherche à comprendre le fonctionnement des systèmes pour mieux les sécuriser.
+        </p>
+      </section>
+
+      <!-- Formation -->
+      <section>
+        <h2>Formation</h2>
+        <div class="formation-item">
+          <span class="period">2020 – 2024 (obtenu)</span>
+          <h3>Brevet des collèges - Mention Bien</h3>
+        </div>
+        <div class="formation-item">
+          <span class="period">2024 – 2026 (en cours)</span>
+          <h3>Bac STI2D - Option SIN</h3>
+          <p>Systèmes d'Information et Numérique</p>
+        </div>
+      </section>
+
+      <!-- Expérience -->
+      <section>
+        <h2>Expérience</h2>
+        <div class="formation-item">
+          <span class="period">2023 - Stage d'observation (2 semaines)</span>
+          <h3>La Maison des Marmots - Accueil de loisirs</h3>
+          <p>Saint-Ouen (80610) - Encadrement d'enfants de 3 à 15 ans, animation d'activités</p>
+        </div>
+        <div class="formation-item">
+          <span class="period">2024 - Stage d'observation (2 semaines)</span>
+          <h3>Médiathèque de Saint-Ouen</h3>
+          <p>Saint-Ouen (80610) - Rangement et réception des ouvrages, scan et mise à jour des statuts en base de données, suivi des livres en transit entre médiathèques</p>
+        </div>
+      </section>
+
+      <!-- Centres d'intérêt -->
+      <section>
+        <h2>Centres d'intérêt</h2>
+        <ul class="objectif-list">
+          <li>Cybersécurité, pentesting, veille technologique</li>
+          <li>Architecture réseau &amp; administration système</li>
+          <li>Prototypage &amp; fabrication (impression 3D, découpe laser)</li>
+        </ul>
+      </section>
+
+    </main>
+
+  </div>
+</body>
+</html>

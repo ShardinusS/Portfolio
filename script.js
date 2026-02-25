@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.matches) {
       document.querySelectorAll('.reveal-item').forEach(el => {
         el.classList.add('revealed');
+        el.style.opacity = '1';
+        el.style.transform = 'none';
       });
     }
   });
@@ -68,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
   } else if (cursor) {
     cursor.remove();
     cursor = null;
+    document.body.classList.remove('js-custom-cursor');
   }
 
   // ── Mobile Hamburger Menu ──
@@ -151,6 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
       resizeTimer = setTimeout(() => {
         if (window.innerWidth >= 900 && nav.classList.contains('open')) {
           closeMenu(false);
+          document.activeElement?.blur();
         }
       }, 100);
     });
@@ -160,25 +164,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const sections = document.querySelectorAll('section[id], footer[id]');
   const navLinks = document.querySelectorAll('.nav-link');
 
-  const observerOptions = {
-    threshold: 0.15,
-    rootMargin: "-20% 0px -30% 0px"
-  };
+  const visibleSections = new Set();
 
   const observer = new IntersectionObserver((entries) => {
-    let best = null;
     entries.forEach(entry => {
-      if (entry.isIntersecting && (!best || entry.intersectionRatio > best.intersectionRatio)) {
-        best = entry;
+      if (entry.isIntersecting) {
+        visibleSections.add(entry.target);
+      } else {
+        visibleSections.delete(entry.target);
       }
     });
-    if (best) {
+
+    // Pick the topmost visible section (DOM order)
+    let activeSection = null;
+    for (const section of sections) {
+      if (visibleSections.has(section)) {
+        activeSection = section;
+        break;
+      }
+    }
+
+    if (activeSection) {
       navLinks.forEach(link => link.classList.remove('active'));
-      const id = best.target.getAttribute('id');
+      const id = activeSection.getAttribute('id');
       const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
       if (activeLink) activeLink.classList.add('active');
     }
-  }, observerOptions);
+  }, { threshold: 0, rootMargin: "-20% 0px -30% 0px" });
 
   sections.forEach(section => observer.observe(section));
 
@@ -245,6 +257,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── AJAX Contact Form ──
   const contactForm = document.querySelector('.contact-form');
   if (contactForm && contactForm.getAttribute('action')) {
+    if (!window.fetch) {
+      // No fetch support: let the form submit natively
+    } else {
     function handleFormSubmit(e) {
       e.preventDefault();
       const btn = contactForm.querySelector('.form-submit');
@@ -275,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
           throw new Error('error');
         }
       }).catch(() => {
-        btnSpan.textContent = 'Échec, réessaie';
+        btnSpan.textContent = 'Erreur, vérifie ta connexion';
         btn.disabled = false;
         setTimeout(() => {
           btnSpan.textContent = originalText;
@@ -283,13 +298,14 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
     contactForm.addEventListener('submit', handleFormSubmit);
+    } // end fetch check
   }
 
   // ── Image Lightbox ──
   let activeLightbox = null;
 
-  document.querySelectorAll('.project-thumb[data-lightbox]').forEach(preview => {
-    const img = preview.querySelector('.project-thumb-img');
+  document.querySelectorAll('[data-lightbox]').forEach(preview => {
+    const img = preview.querySelector('img');
     if (!img) return;
 
     const openLightbox = () => {
@@ -321,6 +337,8 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.appendChild(lb);
       document.body.style.overflow = 'hidden';
       if (cursor) cursor.style.visibility = 'hidden';
+      const layoutEl = document.querySelector('.layout');
+      if (layoutEl) layoutEl.setAttribute('aria-hidden', 'true');
       activeLightbox = lb;
 
       // Double rAF to trigger CSS transition
@@ -332,20 +350,24 @@ document.addEventListener('DOMContentLoaded', () => {
       const closeLightbox = () => {
         if (isClosing) return;
         isClosing = true;
+        activeLightbox = null;
         lb.classList.remove('lb-open');
         document.removeEventListener('keydown', onKey);
         setTimeout(() => {
           lb.remove();
-          document.body.style.overflow = '';
+          if (!document.body.classList.contains('menu-open')) {
+            document.body.style.overflow = '';
+          }
           if (cursor) cursor.style.visibility = '';
-          activeLightbox = null;
+          const layoutEl = document.querySelector('.layout');
+          if (layoutEl) layoutEl.removeAttribute('aria-hidden');
           if (trigger) trigger.focus();
         }, 320);
       };
 
       const onKey = (e) => {
         if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'Tab') { e.preventDefault(); closeBtn.focus(); }
+        if (e.key === 'Tab') { e.preventDefault(); e.stopPropagation(); closeBtn.focus(); }
       };
 
       closeBtn.addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
@@ -361,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── Staggered Reveal Animations on Scroll ──
   const revealElements = document.querySelectorAll(
-    '.skill-card, .project-card, .timeline-item, .text-col, .contact-card, .contact-item, .section-label, .big-text'
+    '.skill-card, .project-card, .timeline-item, .contact-card, .contact-item, .section-label'
   );
 
   if (reducedMotionQuery.matches) {
@@ -374,13 +396,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
+          if (reducedMotionQuery.matches) {
+            entry.target.classList.add('revealed');
+            revealObserver.unobserve(entry.target);
+            return;
+          }
           const parent = entry.target.parentElement;
-          const staggerClass = entry.target.dataset.stagger || entry.target.tagName;
-          const siblings = parent ? Array.from(parent.children).filter(
-            el => (el.dataset.stagger || el.tagName) === staggerClass
-          ) : [];
-          const idx = siblings.indexOf(entry.target);
-          const delay = idx >= 0 ? idx * 100 : 0;
+          const staggerKey = entry.target.dataset.stagger || entry.target.classList[0];
+          let delay = 0;
+          if (staggerKey && parent) {
+            const siblings = Array.from(parent.children).filter(el =>
+              (el.dataset.stagger || el.classList[0]) === staggerKey
+            );
+            const idx = siblings.indexOf(entry.target);
+            delay = idx >= 0 ? idx * 100 : 0;
+          }
 
           setTimeout(() => {
             entry.target.classList.add('revealed');
@@ -408,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     scCard.addEventListener('mousemove', (e) => {
-      if (tiltRafId) return;
+      if (tiltRafId || activeLightbox) return;
       tiltRafId = requestAnimationFrame(() => {
         const rect = scCard.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width;
@@ -422,8 +452,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     scCard.addEventListener('mouseleave', () => {
       if (tiltRafId) { cancelAnimationFrame(tiltRafId); tiltRafId = null; }
-      scCard.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease';
-      scCard.style.transform = '';
+      if (!activeLightbox) {
+        scCard.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease';
+        scCard.style.transform = '';
+      }
     });
   }
 
