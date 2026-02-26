@@ -137,8 +137,9 @@ ul { list-style: none; }
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
+  opacity: 0;
   transform: translate(-50%, -50%);
-  transition: width 0.3s, height 0.3s, background 0.3s;
+  transition: width 0.3s, height 0.3s, background 0.3s, opacity 0.3s;
   box-shadow: 0 0 6px rgba(74, 222, 128, 0.4);
 }
 
@@ -484,7 +485,7 @@ ul { list-style: none; }
   background: rgba(255,255,255,0.02);
   border: 1px solid var(--border);
   padding: 1.5rem;
-  transition: border-color 0.3s, background 0.3s;
+  transition: border-color 0.3s, background 0.3s, opacity 0.6s ease, transform 0.6s ease;
   border-radius: 8px;
 }
 .skill-card:hover {
@@ -534,7 +535,7 @@ ul { list-style: none; }
   border-radius: 12px;
   padding: 2.25rem;
   overflow: hidden;
-  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease, opacity 0.6s ease;
 }
 /* Noise texture overlay */
 .project-card::before {
@@ -972,6 +973,11 @@ ul { list-style: none; }
   background: transparent;
   color: var(--accent);
 }
+.form-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
 .form-submit-ico {
   width: 16px; height: 16px;
 }
@@ -990,7 +996,7 @@ ul { list-style: none; }
   border: 1px solid var(--border);
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.02);
-  transition: border-color 0.3s, background 0.3s;
+  transition: border-color 0.3s, background 0.3s, opacity 0.6s ease, transform 0.6s ease;
 }
 .contact-item:hover {
   border-color: rgba(255, 255, 255, 0.15);
@@ -1186,9 +1192,13 @@ ul { list-style: none; }
     scroll-behavior: auto !important;
   }
   html { scroll-behavior: auto; }
+  .status-dot, .status-dot-sm, .system-online {
+    animation: none !important;
+  }
 }
 
 /* ── No-JS Fallback ── */
+html.no-js .reveal-item,
 html.no-js .reveal-text,
 html.no-js .reveal-delay,
 html.no-js .hero-divider,
