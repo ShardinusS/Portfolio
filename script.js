@@ -214,6 +214,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  // ── Hero Text Rotator ──
+  const rotatorEl = document.querySelector('.hero-rotator');
+  if (rotatorEl) {
+    const rotatorLines = rotatorEl.querySelectorAll('.hero-rotator-line');
+    if (rotatorLines.length > 1) {
+      let currentLine = 0;
+      setInterval(() => {
+        const prev = currentLine;
+        currentLine = (currentLine + 1) % rotatorLines.length;
+        rotatorLines[prev].classList.remove('active');
+        rotatorLines[prev].classList.add('out');
+        rotatorLines[currentLine].classList.add('active');
+        setTimeout(() => rotatorLines[prev].classList.remove('out'), 500);
+      }, 3000);
+    }
+  }
+
   // ── Copy Email to Clipboard ──
   const copyBtn = document.querySelector('.copy-email-btn');
   if (copyBtn) {
