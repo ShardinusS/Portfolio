@@ -8,7 +8,7 @@ Portfolio personnel de **Kenzo Metgy**, étudiant en Terminale STI2D SIN, passio
 
 ## À propos
 
-Site vitrine conçu pour présenter mon parcours, mes compétences et mes projets. Entièrement fait main, sans framework.
+Site vitrine conçu pour présenter mon parcours, mes compétences et mes projets, sans framework.
 
 ---
 
