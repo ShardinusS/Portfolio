@@ -56,8 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Grow cursor on interactive elements (delegation for dynamic elements)
     document.addEventListener('mouseover', (e) => {
       if (e.target.closest('a, button, [role="button"]')) {
-        cursor.style.width = '32px';
-        cursor.style.height = '32px';
+        cursor.style.width = '20px';
+        cursor.style.height = '20px';
       }
     }, { passive: true });
     document.addEventListener('mouseout', (e) => {
@@ -475,5 +475,24 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // ── Skill group accordions ──
+  document.querySelectorAll('.skill-group-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const content = toggle.nextElementSibling;
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+
+      if (isOpen) {
+        toggle.setAttribute('aria-expanded', 'false');
+        content.hidden = true;
+      } else {
+        toggle.setAttribute('aria-expanded', 'true');
+        content.hidden = false;
+      }
+
+      // Re-init lucide icons in case new ones are revealed
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    });
+  });
 
 });

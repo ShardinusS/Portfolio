@@ -541,8 +541,16 @@ ul { list-style: none; }
 /* ── Skills Grid ── */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
+}
+
+.skill-card--wide {
+  grid-column: span 2;
+}
+
+.skill-card--full {
+  grid-column: span 3;
 }
 
 .skill-card {
@@ -621,6 +629,70 @@ ul { list-style: none; }
   border-color: rgba(74, 222, 128, 0.4);
   background: rgba(74, 222, 128, 0.08);
   transform: translateY(-1px);
+}
+
+/* ── Skill accordion groups ── */
+.skill-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.skill-group-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: 100%;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 0.6rem;
+  cursor: pointer;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-align: left;
+  transition: background 0.2s, color 0.2s;
+  position: relative;
+}
+.skill-group-toggle:hover {
+  background: rgba(74, 222, 128, 0.06);
+  color: var(--text-main);
+}
+.skill-group-toggle[aria-expanded="true"] {
+  color: var(--accent);
+}
+.skill-group-toggle[aria-expanded="true"] .group-arrow {
+  transform: rotate(90deg);
+}
+
+.group-arrow {
+  width: 13px; height: 13px;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+  color: currentColor;
+}
+
+.group-count {
+  margin-left: auto;
+  font-size: 0.65rem;
+  color: var(--accent);
+  background: rgba(74, 222, 128, 0.08);
+  border: 1px solid rgba(74, 222, 128, 0.18);
+  border-radius: 99px;
+  padding: 0.1rem 0.45rem;
+  line-height: 1.4;
+}
+
+.skill-group-content {
+  padding: 0.4rem 0.6rem 0.6rem 1.6rem;
+  overflow: hidden;
+}
+.skill-group-content[hidden] {
+  display: none;
+}
+.skill-group-content .skill-tags {
+  gap: 0.4rem;
 }
 
 /* ── Projects ── */
@@ -1263,6 +1335,9 @@ ul { list-style: none; }
   .footer-bar { flex-wrap: wrap; gap: 0.75rem; }
   .footer-bar-line { display: none; }
   .menu-toggle { position: relative; z-index: 110; }
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .skill-card--wide { grid-column: span 2; }
+  .skill-card--full { grid-column: span 2; }
 }
 
 @media (max-width: 600px) {
@@ -1276,6 +1351,7 @@ ul { list-style: none; }
 @media (max-width: 500px) {
   .hero-title { font-size: 2.5rem; }
   .skills-grid { grid-template-columns: 1fr; }
+  .skill-card--wide, .skill-card--full { grid-column: span 1; }
   .section { padding: 2.5rem 1rem; }
   .footer { padding: 2.5rem 1rem 1rem; }
   .contact-card { padding: 1.5rem; }
