@@ -476,23 +476,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ── Skill group accordions ──
-  document.querySelectorAll('.skill-group-toggle').forEach(toggle => {
-    toggle.addEventListener('click', () => {
-      const content = toggle.nextElementSibling;
-      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+  // ── Sub-category toggle (one at a time per card)
+  document.querySelectorAll('.skill-subcategory__toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.skill-card');
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
 
-      if (isOpen) {
-        toggle.setAttribute('aria-expanded', 'false');
-        content.hidden = true;
-      } else {
-        toggle.setAttribute('aria-expanded', 'true');
-        content.hidden = false;
+      if (!isOpen) {
+        card.querySelectorAll('.skill-subcategory__toggle[aria-expanded="true"]').forEach(other => {
+          other.setAttribute('aria-expanded', 'false');
+        });
       }
 
-      // Re-init lucide icons in case new ones are revealed
-      if (typeof lucide !== 'undefined') lucide.createIcons();
+      btn.setAttribute('aria-expanded', !isOpen);
     });
   });
-
 });
