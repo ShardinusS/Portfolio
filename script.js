@@ -491,4 +491,34 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.setAttribute('aria-expanded', !isOpen);
     });
   });
+
+  // ── E-Bench Phase Tabs ──
+  const ebenchTablist = document.querySelector('.ebench-tabs');
+  if (ebenchTablist) {
+    const tabs = Array.from(ebenchTablist.querySelectorAll('.ebench-tab'));
+
+    const activateTab = (tab, setFocus = true) => {
+      tabs.forEach(t => {
+        const selected = t === tab;
+        t.classList.toggle('active', selected);
+        t.setAttribute('aria-selected', selected ? 'true' : 'false');
+        t.tabIndex = selected ? 0 : -1;
+        const panel = document.getElementById(t.getAttribute('aria-controls'));
+        if (panel) panel.hidden = !selected;
+      });
+      if (setFocus) tab.focus();
+    };
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => activateTab(tab, false));
+      tab.addEventListener('keydown', (e) => {
+        let target = null;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') target = tabs[(i + 1) % tabs.length];
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') target = tabs[(i - 1 + tabs.length) % tabs.length];
+        else if (e.key === 'Home') target = tabs[0];
+        else if (e.key === 'End') target = tabs[tabs.length - 1];
+        if (target) { e.preventDefault(); activateTab(target); }
+      });
+    });
+  }
 });
