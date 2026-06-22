@@ -476,6 +476,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ── Hero Avatar 3D Tilt (Pingu) ──
+  const avatar = document.querySelector('.hero-avatar');
+  if (avatar && !reducedMotionQuery.matches) {
+    const maxTilt = 14;
+    let avatarRaf = null;
+
+    avatar.addEventListener('mouseenter', () => {
+      avatar.classList.add('is-tilting');
+      avatar.style.transition = 'transform 0.12s ease-out, box-shadow 0.3s ease';
+    });
+
+    avatar.addEventListener('mousemove', (e) => {
+      if (avatarRaf || activeLightbox) return;
+      avatarRaf = requestAnimationFrame(() => {
+        const rect = avatar.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        const rotateY = (x - 0.5) * maxTilt * 2;
+        const rotateX = (0.5 - y) * maxTilt * 2;
+        avatar.style.transform =
+          `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.06)`;
+        avatar.style.setProperty('--glare-x', `${x * 100}%`);
+        avatar.style.setProperty('--glare-y', `${y * 100}%`);
+        avatarRaf = null;
+      });
+    }, { passive: true });
+
+    avatar.addEventListener('mouseleave', () => {
+      if (avatarRaf) { cancelAnimationFrame(avatarRaf); avatarRaf = null; }
+      avatar.classList.remove('is-tilting');
+      avatar.style.transition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease';
+      avatar.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg)';
+    });
+  }
+
   // ── Sub-category toggle (one at a time per card)
   document.querySelectorAll('.skill-subcategory__toggle').forEach(btn => {
     btn.addEventListener('click', () => {
