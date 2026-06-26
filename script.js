@@ -218,16 +218,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const rotatorEl = document.querySelector('.hero-rotator');
   if (rotatorEl) {
     const rotatorLines = rotatorEl.querySelectorAll('.hero-rotator-line');
-    if (rotatorLines.length > 1) {
+    if (rotatorLines.length > 1 && !reducedMotionQuery.matches) {
       let currentLine = 0;
-      setInterval(() => {
+      let rotatorId = null;
+      const advance = () => {
         const prev = currentLine;
         currentLine = (currentLine + 1) % rotatorLines.length;
         rotatorLines[prev].classList.remove('active');
         rotatorLines[prev].classList.add('out');
         rotatorLines[currentLine].classList.add('active');
         setTimeout(() => rotatorLines[prev].classList.remove('out'), 500);
-      }, 3000);
+      };
+      const startRotator = () => { if (!rotatorId) rotatorId = setInterval(advance, 3000); };
+      const stopRotator = () => { if (rotatorId) { clearInterval(rotatorId); rotatorId = null; } };
+      startRotator();
+      // Pause on hover/focus so users can finish reading
+      rotatorEl.addEventListener('mouseenter', stopRotator);
+      rotatorEl.addEventListener('mouseleave', startRotator);
+      rotatorEl.addEventListener('focusin', stopRotator);
+      rotatorEl.addEventListener('focusout', startRotator);
+      // Pause when tab not visible
+      document.addEventListener('visibilitychange', () => {
+        document.hidden ? stopRotator() : startRotator();
+      });
     }
   }
 

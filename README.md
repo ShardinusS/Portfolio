@@ -35,11 +35,16 @@ Site vitrine conçu pour présenter mon parcours, mes compétences et mes projet
 ## Structure
 
 ```
-├── index.html        # Structure et contenu
-├── style.css         # Styles et animations
-├── script.js         # Interactions et logique
-├── Ebench2.png       # Image projet E-Bench
-└── SC.png            # Logo ShardCards
+├── index.html         # Structure et contenu
+├── style.css          # Styles et animations
+├── script.js          # Interactions et logique
+├── lucide.min.js      # Icônes (self-hosted)
+├── og-preview.jpg     # Aperçu partage social (Open Graph)
+├── Ebench2.webp       # Maquette E-Bench
+├── ebench-reel.webp   # Déploiement réel E-Bench
+├── SC.webp            # Logo ShardCards
+├── pingu.jpg          # Avatar
+└── Photos/            # Galerie ThinkPad T490 (versions _web)
 ```
 
 ---
